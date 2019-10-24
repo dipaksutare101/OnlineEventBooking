@@ -1,0 +1,50 @@
+﻿@model OnlineEventBooking.ViewModel.VenueViewModel
+@{
+    ViewBag.Title = "Venue";
+}
+
+<h2>Add Venue</h2>
+
+@*i don't know what to Right Now*@
+@using (Html.BeginForm("SaveVenue","Venuedata",FormMethod.Post,new { enctype = "multipart/form-data" }))
+{
+
+    //very neccesary for file upload new { enctype = "multipart/form-data" }
+    @*Call using action using Form element*@
+    <table>
+        <tr>
+            <td>Venue Name :</td>
+            <td> <input type="text" name="VenueName" value="" /> </td>
+        </tr>
+        <tr>
+            <td>Venue cost :</td>
+            <td>  <input type="text" name="VenueCost" value="" /> </td>
+        </tr>
+        <tr>
+            <td> Vanue image upload : </td>
+
+            <td> <input type="file" name="imageFile" value="" /> </td>
+        </tr>
+
+        <tr>
+            <td><input type="submit" name="submit" value="Save" style="padding-right :15px;"   />  </td>
+            <td> <input type="submit" name="submit" value="cancel" /> </td>
+        </tr>
+
+        <tr>
+            <td>@Html.ActionLink("Show Venue list","List","Venuedata")</td>
+        </tr>
+    </table>
+}
+
+
+
+
+
+
+
+
+
+
+
+

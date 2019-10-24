@@ -1,0 +1,667 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="EventDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BookingDetails">
+          <Key>
+            <PropertyRef Name="BookingID" />
+          </Key>
+          <Property Name="BookingID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BookingNo" Type="varchar" MaxLength="50" />
+          <Property Name="BookingDate" Type="date" />
+          <Property Name="Createdby" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="BookingApproval" Type="char" MaxLength="1" />
+          <Property Name="BookingApprovalDate" Type="datetime" />
+          <Property Name="BookingCompletedFlag" Type="char" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="BookingEquipment">
+          <Key>
+            <PropertyRef Name="BookingEquipmentID" />
+          </Key>
+          <Property Name="BookingEquipmentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EquipmentID" Type="int" />
+          <Property Name="Createdby" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="BookingID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BookingFlower">
+          <Key>
+            <PropertyRef Name="BookingFlowerID" />
+          </Key>
+          <Property Name="BookingFlowerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FlowerID" Type="int" />
+          <Property Name="Createdby" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="BookingID" Type="int" />
+        </EntityType>
+        <EntityType Name="BookingFood">
+          <Key>
+            <PropertyRef Name="BookFoodID" />
+          </Key>
+          <Property Name="BookFoodID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FoodType" Type="char" MaxLength="1" />
+          <Property Name="MealType" Type="char" MaxLength="1" />
+          <Property Name="DishType" Type="int" />
+          <Property Name="DishName" Type="int" />
+          <Property Name="Createdby" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="BookingID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BookingLight">
+          <Key>
+            <PropertyRef Name="BookLightID" />
+          </Key>
+          <Property Name="BookLightID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LightType" Type="char" MaxLength="1" />
+          <Property Name="LightIDSelected" Type="int" />
+          <Property Name="BookingID" Type="int" />
+          <Property Name="Createdby" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="BookingVenue">
+          <Key>
+            <PropertyRef Name="BookingVenueID" />
+          </Key>
+          <Property Name="BookingVenueID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VenueID" Type="int" />
+          <Property Name="EventTypeID" Type="int" />
+          <Property Name="GuestCount" Type="int" />
+          <Property Name="Createdby" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="BookingID" Type="int" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="CityID" />
+          </Key>
+          <Property Name="CityID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CityName" Type="nvarchar" MaxLength="200" />
+          <Property Name="StateID" Type="int" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="CountryID" />
+          </Key>
+          <Property Name="CountryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="Equipment">
+          <Key>
+            <PropertyRef Name="EquipmentID" />
+          </Key>
+          <Property Name="EquipmentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EquipmentName" Type="varchar" MaxLength="200" />
+          <Property Name="EquipmentFilename" Type="varchar" MaxLength="200" />
+          <Property Name="EquipmentFilePath" Type="varchar" MaxLength="200" />
+          <Property Name="Createdby" Type="int" />
+          <Property Name="Createdate" Type="datetime" />
+          <Property Name="EquipmentCost" Type="int" />
+        </EntityType>
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="EventID" />
+          </Key>
+          <Property Name="EventID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EventType" Type="varchar" MaxLength="50" />
+          <Property Name="Status" Type="char" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="Flower">
+          <Key>
+            <PropertyRef Name="FlowerID" />
+          </Key>
+          <Property Name="FlowerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FlowerName" Type="varchar" MaxLength="200" />
+          <Property Name="FlowerFilename" Type="varchar" MaxLength="200" />
+          <Property Name="FlowerFilePath" Type="varchar" MaxLength="200" />
+          <Property Name="Createdby" Type="int" />
+          <Property Name="Createdate" Type="datetime" />
+          <Property Name="FlowerCost" Type="int" />
+        </EntityType>
+        <EntityType Name="Food">
+          <Key>
+            <PropertyRef Name="FoodID" />
+          </Key>
+          <Property Name="FoodID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FoodType" Type="char" MaxLength="1" />
+          <Property Name="MealType" Type="char" MaxLength="1" />
+          <Property Name="DishType" Type="int" />
+          <Property Name="FoodName" Type="varchar" MaxLength="200" />
+          <Property Name="FoodFilename" Type="varchar" MaxLength="200" />
+          <Property Name="FoodFilePath" Type="varchar" MaxLength="200" />
+          <Property Name="Createdby" Type="int" />
+          <Property Name="Createdate" Type="datetime" />
+          <Property Name="FoodCost" Type="int" />
+        </EntityType>
+        <EntityType Name="Light">
+          <Key>
+            <PropertyRef Name="LightID" />
+          </Key>
+          <Property Name="LightID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LightType" Type="char" MaxLength="1" />
+          <Property Name="LightName" Type="varchar" MaxLength="200" />
+          <Property Name="LightFilename" Type="varchar" MaxLength="200" />
+          <Property Name="LightFilePath" Type="varchar" MaxLength="200" />
+          <Property Name="Createdby" Type="int" />
+          <Property Name="Createdate" Type="datetime" />
+          <Property Name="LightCost" Type="int" />
+        </EntityType>
+        <EntityType Name="Registration">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" />
+          <Property Name="Address" Type="varchar" MaxLength="100" />
+          <Property Name="City" Type="varchar" MaxLength="100" />
+          <Property Name="State" Type="varchar" MaxLength="100" />
+          <Property Name="Country" Type="varchar" MaxLength="100" />
+          <Property Name="Mobileno" Type="varchar" MaxLength="20" />
+          <Property Name="EmailID" Type="varchar" MaxLength="100" />
+          <Property Name="Username" Type="varchar" MaxLength="20" />
+          <Property Name="Password" Type="varchar" MaxLength="100" />
+          <Property Name="ConfirmPassword" Type="varchar" MaxLength="100" />
+          <Property Name="Gender" Type="varchar" MaxLength="10" />
+          <Property Name="Birthdate" Type="datetime" />
+          <Property Name="RoleID" Type="int" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Rolename" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="States">
+          <Key>
+            <PropertyRef Name="StateID" />
+          </Key>
+          <Property Name="StateID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StateName" Type="varchar" MaxLength="200" />
+          <Property Name="CountryID" Type="int" />
+        </EntityType>
+        <EntityType Name="Venue">
+          <Key>
+            <PropertyRef Name="VenueID" />
+          </Key>
+          <Property Name="VenueID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VenueName" Type="varchar" MaxLength="200" />
+          <Property Name="VenueFilename" Type="varchar" MaxLength="200" />
+          <Property Name="VenueFilePath" Type="varchar" MaxLength="200" />
+          <Property Name="Createdby" Type="int" />
+          <Property Name="Createdate" Type="datetime" />
+          <Property Name="VenueCost" Type="int" />
+        </EntityType>
+        <EntityContainer Name="EventDBModelStoreContainer">
+          <EntitySet Name="BookingDetails" EntityType="Self.BookingDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BookingEquipment" EntityType="Self.BookingEquipment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BookingFlower" EntityType="Self.BookingFlower" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BookingFood" EntityType="Self.BookingFood" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BookingLight" EntityType="Self.BookingLight" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BookingVenue" EntityType="Self.BookingVenue" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Equipment" EntityType="Self.Equipment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Event" EntityType="Self.Event" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Flower" EntityType="Self.Flower" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Food" EntityType="Self.Food" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Light" EntityType="Self.Light" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Registration" EntityType="Self.Registration" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="States" EntityType="Self.States" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Venue" EntityType="Self.Venue" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EventDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="BookingDetail">
+          <Key>
+            <PropertyRef Name="BookingID" />
+          </Key>
+          <Property Name="BookingID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BookingNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BookingDate" Type="DateTime" Precision="0" />
+          <Property Name="Createdby" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="BookingApproval" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="BookingApprovalDate" Type="DateTime" Precision="3" />
+          <Property Name="BookingCompletedFlag" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="BookingEquipment">
+          <Key>
+            <PropertyRef Name="BookingEquipmentID" />
+          </Key>
+          <Property Name="BookingEquipmentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EquipmentID" Type="Int32" />
+          <Property Name="Createdby" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="BookingID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BookingFlower">
+          <Key>
+            <PropertyRef Name="BookingFlowerID" />
+          </Key>
+          <Property Name="BookingFlowerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FlowerID" Type="Int32" />
+          <Property Name="Createdby" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="BookingID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="BookingFood">
+          <Key>
+            <PropertyRef Name="BookFoodID" />
+          </Key>
+          <Property Name="BookFoodID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FoodType" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="MealType" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="DishType" Type="Int32" />
+          <Property Name="DishName" Type="Int32" />
+          <Property Name="Createdby" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="BookingID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BookingLight">
+          <Key>
+            <PropertyRef Name="BookLightID" />
+          </Key>
+          <Property Name="BookLightID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LightType" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="LightIDSelected" Type="Int32" />
+          <Property Name="BookingID" Type="Int32" />
+          <Property Name="Createdby" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="BookingVenue">
+          <Key>
+            <PropertyRef Name="BookingVenueID" />
+          </Key>
+          <Property Name="BookingVenueID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VenueID" Type="Int32" />
+          <Property Name="EventTypeID" Type="Int32" />
+          <Property Name="GuestCount" Type="Int32" />
+          <Property Name="Createdby" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="BookingID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="CityID" />
+          </Key>
+          <Property Name="CityID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CityName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="StateID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="CountryID" />
+          </Key>
+          <Property Name="CountryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Equipment">
+          <Key>
+            <PropertyRef Name="EquipmentID" />
+          </Key>
+          <Property Name="EquipmentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EquipmentName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="EquipmentFilename" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="EquipmentFilePath" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Createdby" Type="Int32" />
+          <Property Name="Createdate" Type="DateTime" Precision="3" />
+          <Property Name="EquipmentCost" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="EventID" />
+          </Key>
+          <Property Name="EventID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EventType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Flower">
+          <Key>
+            <PropertyRef Name="FlowerID" />
+          </Key>
+          <Property Name="FlowerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FlowerName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="FlowerFilename" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="FlowerFilePath" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Createdby" Type="Int32" />
+          <Property Name="Createdate" Type="DateTime" Precision="3" />
+          <Property Name="FlowerCost" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Food">
+          <Key>
+            <PropertyRef Name="FoodID" />
+          </Key>
+          <Property Name="FoodID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FoodType" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="MealType" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="DishType" Type="Int32" />
+          <Property Name="FoodName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="FoodFilename" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="FoodFilePath" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Createdby" Type="Int32" />
+          <Property Name="Createdate" Type="DateTime" Precision="3" />
+          <Property Name="FoodCost" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Light">
+          <Key>
+            <PropertyRef Name="LightID" />
+          </Key>
+          <Property Name="LightID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LightType" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="LightName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="LightFilename" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="LightFilePath" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Createdby" Type="Int32" />
+          <Property Name="Createdate" Type="DateTime" Precision="3" />
+          <Property Name="LightCost" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Registration">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="State" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Country" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Mobileno" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="EmailID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Username" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ConfirmPassword" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Gender" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Birthdate" Type="DateTime" Precision="3" />
+          <Property Name="RoleID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Rolename" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="State">
+          <Key>
+            <PropertyRef Name="StateID" />
+          </Key>
+          <Property Name="StateID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StateName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="CountryID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Venue">
+          <Key>
+            <PropertyRef Name="VenueID" />
+          </Key>
+          <Property Name="VenueID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VenueName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="VenueFilename" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="VenueFilePath" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Createdby" Type="Int32" />
+          <Property Name="Createdate" Type="DateTime" Precision="3" />
+          <Property Name="VenueCost" Type="Int32" />
+        </EntityType>
+        <EntityContainer Name="EventDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BookingDetails" EntityType="Self.BookingDetail" />
+          <EntitySet Name="BookingEquipments" EntityType="Self.BookingEquipment" />
+          <EntitySet Name="BookingFlowers" EntityType="Self.BookingFlower" />
+          <EntitySet Name="BookingFoods" EntityType="Self.BookingFood" />
+          <EntitySet Name="BookingLights" EntityType="Self.BookingLight" />
+          <EntitySet Name="BookingVenues" EntityType="Self.BookingVenue" />
+          <EntitySet Name="Cities" EntityType="Self.City" />
+          <EntitySet Name="Countries" EntityType="Self.Country" />
+          <EntitySet Name="Equipments" EntityType="Self.Equipment" />
+          <EntitySet Name="Events" EntityType="Self.Event" />
+          <EntitySet Name="Flowers" EntityType="Self.Flower" />
+          <EntitySet Name="Foods" EntityType="Self.Food" />
+          <EntitySet Name="Lights" EntityType="Self.Light" />
+          <EntitySet Name="Registrations" EntityType="Self.Registration" />
+          <EntitySet Name="Roles" EntityType="Self.Role" />
+          <EntitySet Name="States" EntityType="Self.State" />
+          <EntitySet Name="Venues" EntityType="Self.Venue" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EventDBModelStoreContainer" CdmEntityContainer="EventDBEntities">
+          <EntitySetMapping Name="BookingDetails">
+            <EntityTypeMapping TypeName="EventDBModel.BookingDetail">
+              <MappingFragment StoreEntitySet="BookingDetails">
+                <ScalarProperty Name="BookingID" ColumnName="BookingID" />
+                <ScalarProperty Name="BookingNo" ColumnName="BookingNo" />
+                <ScalarProperty Name="BookingDate" ColumnName="BookingDate" />
+                <ScalarProperty Name="Createdby" ColumnName="Createdby" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="BookingApproval" ColumnName="BookingApproval" />
+                <ScalarProperty Name="BookingApprovalDate" ColumnName="BookingApprovalDate" />
+                <ScalarProperty Name="BookingCompletedFlag" ColumnName="BookingCompletedFlag" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BookingEquipments">
+            <EntityTypeMapping TypeName="EventDBModel.BookingEquipment">
+              <MappingFragment StoreEntitySet="BookingEquipment">
+                <ScalarProperty Name="BookingEquipmentID" ColumnName="BookingEquipmentID" />
+                <ScalarProperty Name="EquipmentID" ColumnName="EquipmentID" />
+                <ScalarProperty Name="Createdby" ColumnName="Createdby" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="BookingID" ColumnName="BookingID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BookingFlowers">
+            <EntityTypeMapping TypeName="EventDBModel.BookingFlower">
+              <MappingFragment StoreEntitySet="BookingFlower">
+                <ScalarProperty Name="BookingFlowerID" ColumnName="BookingFlowerID" />
+                <ScalarProperty Name="FlowerID" ColumnName="FlowerID" />
+                <ScalarProperty Name="Createdby" ColumnName="Createdby" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="BookingID" ColumnName="BookingID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BookingFoods">
+            <EntityTypeMapping TypeName="EventDBModel.BookingFood">
+              <MappingFragment StoreEntitySet="BookingFood">
+                <ScalarProperty Name="BookFoodID" ColumnName="BookFoodID" />
+                <ScalarProperty Name="FoodType" ColumnName="FoodType" />
+                <ScalarProperty Name="MealType" ColumnName="MealType" />
+                <ScalarProperty Name="DishType" ColumnName="DishType" />
+                <ScalarProperty Name="DishName" ColumnName="DishName" />
+                <ScalarProperty Name="Createdby" ColumnName="Createdby" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="BookingID" ColumnName="BookingID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BookingLights">
+            <EntityTypeMapping TypeName="EventDBModel.BookingLight">
+              <MappingFragment StoreEntitySet="BookingLight">
+                <ScalarProperty Name="BookLightID" ColumnName="BookLightID" />
+                <ScalarProperty Name="LightType" ColumnName="LightType" />
+                <ScalarProperty Name="LightIDSelected" ColumnName="LightIDSelected" />
+                <ScalarProperty Name="BookingID" ColumnName="BookingID" />
+                <ScalarProperty Name="Createdby" ColumnName="Createdby" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BookingVenues">
+            <EntityTypeMapping TypeName="EventDBModel.BookingVenue">
+              <MappingFragment StoreEntitySet="BookingVenue">
+                <ScalarProperty Name="BookingVenueID" ColumnName="BookingVenueID" />
+                <ScalarProperty Name="VenueID" ColumnName="VenueID" />
+                <ScalarProperty Name="EventTypeID" ColumnName="EventTypeID" />
+                <ScalarProperty Name="GuestCount" ColumnName="GuestCount" />
+                <ScalarProperty Name="Createdby" ColumnName="Createdby" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="BookingID" ColumnName="BookingID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cities">
+            <EntityTypeMapping TypeName="EventDBModel.City">
+              <MappingFragment StoreEntitySet="City">
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="StateID" ColumnName="StateID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Countries">
+            <EntityTypeMapping TypeName="EventDBModel.Country">
+              <MappingFragment StoreEntitySet="Country">
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Equipments">
+            <EntityTypeMapping TypeName="EventDBModel.Equipment">
+              <MappingFragment StoreEntitySet="Equipment">
+                <ScalarProperty Name="EquipmentID" ColumnName="EquipmentID" />
+                <ScalarProperty Name="EquipmentName" ColumnName="EquipmentName" />
+                <ScalarProperty Name="EquipmentFilename" ColumnName="EquipmentFilename" />
+                <ScalarProperty Name="EquipmentFilePath" ColumnName="EquipmentFilePath" />
+                <ScalarProperty Name="Createdby" ColumnName="Createdby" />
+                <ScalarProperty Name="Createdate" ColumnName="Createdate" />
+                <ScalarProperty Name="EquipmentCost" ColumnName="EquipmentCost" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Events">
+            <EntityTypeMapping TypeName="EventDBModel.Event">
+              <MappingFragment StoreEntitySet="Event">
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+                <ScalarProperty Name="EventType" ColumnName="EventType" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Flowers">
+            <EntityTypeMapping TypeName="EventDBModel.Flower">
+              <MappingFragment StoreEntitySet="Flower">
+                <ScalarProperty Name="FlowerID" ColumnName="FlowerID" />
+                <ScalarProperty Name="FlowerName" ColumnName="FlowerName" />
+                <ScalarProperty Name="FlowerFilename" ColumnName="FlowerFilename" />
+                <ScalarProperty Name="FlowerFilePath" ColumnName="FlowerFilePath" />
+                <ScalarProperty Name="Createdby" ColumnName="Createdby" />
+                <ScalarProperty Name="Createdate" ColumnName="Createdate" />
+                <ScalarProperty Name="FlowerCost" ColumnName="FlowerCost" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Foods">
+            <EntityTypeMapping TypeName="EventDBModel.Food">
+              <MappingFragment StoreEntitySet="Food">
+                <ScalarProperty Name="FoodID" ColumnName="FoodID" />
+                <ScalarProperty Name="FoodType" ColumnName="FoodType" />
+                <ScalarProperty Name="MealType" ColumnName="MealType" />
+                <ScalarProperty Name="DishType" ColumnName="DishType" />
+                <ScalarProperty Name="FoodName" ColumnName="FoodName" />
+                <ScalarProperty Name="FoodFilename" ColumnName="FoodFilename" />
+                <ScalarProperty Name="FoodFilePath" ColumnName="FoodFilePath" />
+                <ScalarProperty Name="Createdby" ColumnName="Createdby" />
+                <ScalarProperty Name="Createdate" ColumnName="Createdate" />
+                <ScalarProperty Name="FoodCost" ColumnName="FoodCost" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lights">
+            <EntityTypeMapping TypeName="EventDBModel.Light">
+              <MappingFragment StoreEntitySet="Light">
+                <ScalarProperty Name="LightID" ColumnName="LightID" />
+                <ScalarProperty Name="LightType" ColumnName="LightType" />
+                <ScalarProperty Name="LightName" ColumnName="LightName" />
+                <ScalarProperty Name="LightFilename" ColumnName="LightFilename" />
+                <ScalarProperty Name="LightFilePath" ColumnName="LightFilePath" />
+                <ScalarProperty Name="Createdby" ColumnName="Createdby" />
+                <ScalarProperty Name="Createdate" ColumnName="Createdate" />
+                <ScalarProperty Name="LightCost" ColumnName="LightCost" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Registrations">
+            <EntityTypeMapping TypeName="EventDBModel.Registration">
+              <MappingFragment StoreEntitySet="Registration">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Mobileno" ColumnName="Mobileno" />
+                <ScalarProperty Name="EmailID" ColumnName="EmailID" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="ConfirmPassword" ColumnName="ConfirmPassword" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Birthdate" ColumnName="Birthdate" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="EventDBModel.Role">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="Rolename" ColumnName="Rolename" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="States">
+            <EntityTypeMapping TypeName="EventDBModel.State">
+              <MappingFragment StoreEntitySet="States">
+                <ScalarProperty Name="StateID" ColumnName="StateID" />
+                <ScalarProperty Name="StateName" ColumnName="StateName" />
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Venues">
+            <EntityTypeMapping TypeName="EventDBModel.Venue">
+              <MappingFragment StoreEntitySet="Venue">
+                <ScalarProperty Name="VenueID" ColumnName="VenueID" />
+                <ScalarProperty Name="VenueName" ColumnName="VenueName" />
+                <ScalarProperty Name="VenueFilename" ColumnName="VenueFilename" />
+                <ScalarProperty Name="VenueFilePath" ColumnName="VenueFilePath" />
+                <ScalarProperty Name="Createdby" ColumnName="Createdby" />
+                <ScalarProperty Name="Createdate" ColumnName="Createdate" />
+                <ScalarProperty Name="VenueCost" ColumnName="VenueCost" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

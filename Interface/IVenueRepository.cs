@@ -4,9 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL
+namespace Interface
 {
-    public class Class1
+    interface  IVenueRepository
     {
+        void SaveVenue();
+        void UpdateVenue();
+
+
     }
 }
