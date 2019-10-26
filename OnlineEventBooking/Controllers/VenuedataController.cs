@@ -49,5 +49,17 @@ namespace OnlineEventBooking.Controllers
             }
                
         }
+
+
+        public ActionResult Edit(int  Id)
+        {
+            using (EventDBEntities db = new EventDBEntities())
+            {
+                var vanues = (from x in db.Venues where x.VenueID == Id select x new VenueViewModel() { } );
+                return View("Venue", vanues);
+            }
+
+           
+        }
     }
 }
