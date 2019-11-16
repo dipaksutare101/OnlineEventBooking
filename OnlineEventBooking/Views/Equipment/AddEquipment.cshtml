@@ -1,0 +1,36 @@
+﻿@model DAL.Equipment
+@{
+    ViewBag.Title = "AddEquipment";
+}
+
+<h2>Add Equipment</h2>
+
+
+@using (Html.BeginForm())
+{
+<div>
+    @Html.LabelFor(model => model.EquipmentName)
+    @Html.TextBoxFor(model => model.EquipmentName)
+    @Html.ValidationMessageFor(model => model.EquipmentName)
+
+    <br />
+    @Html.Label("Upload Equipment")  : <input type="file" name="filename" value="" />
+
+    <br />
+    @Html.LabelFor(model => model.EquipmentCost)
+    @Html.TextBoxFor(model => model.EquipmentCost)
+    @Html.ValidationMessageFor(model => model.EquipmentCost)
+    <br />
+
+    <input type="submit" name="submit" value="save" />
+    <input type="button" name="cancel" value="cancel" />
+</div>
+
+
+
+
+
+
+
+}
+

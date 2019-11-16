@@ -14,9 +14,7 @@
         <th>
             @Html.DisplayNameFor(model => model.VenueName)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.VenueFilename)
-        </th>
+        
         <th>
             @Html.DisplayNameFor(model => model.VenueFilePath)
         </th>
@@ -37,11 +35,10 @@
         <td>
             @Html.DisplayFor(modelItem => item.VenueName)
         </td>
+        
         <td>
-            @Html.DisplayFor(modelItem => item.VenueFilename)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.VenueFilePath)
+            @*<img src="~/UploadImage/@Html.DisplayFor(modelItem => item.VenueFilename)" height="250px" width="350px" alt="No Image" style="margin-left: 192px;" />*@
+            <img src="/UploadImage/@item.VenueFilePath" height="250px" width="350px" alt="No Image" style="margin-left: 192px;" />
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Createdby)
@@ -54,7 +51,7 @@
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.VenueID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.VenueID }) |
+            
             @Html.ActionLink("Delete", "Delete", new { id=item.VenueID })
         </td>
     </tr>
