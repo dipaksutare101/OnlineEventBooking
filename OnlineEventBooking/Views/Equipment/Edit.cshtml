@@ -1,0 +1,43 @@
+﻿@model  DAL.Equipment
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+
+@using (Html.BeginForm("UpdateSave", "Equipment", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+@Html.HiddenFor(model => model.EquipmentID)
+<div class="form-group">
+    @Html.LabelFor(model => model.EquipmentName, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div>
+        @Html.EditorFor(model => model.EquipmentName, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.EquipmentName)
+    </div>
+
+</div>
+<div class="form-group">
+    @Html.Label("Image Upload") :
+    <input type="file" name="ImageFile" value="" />
+</div>
+
+<div class="form-group">
+    <img src="@Url.Content(Model.EquipmentFilename)" alt="Alternate Text" height="250px" width="250px" />
+</div>
+
+
+<div class="form-group">
+    @Html.LabelFor(model => model.EquipmentCost, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div>
+        @Html.EditorFor(model => model.EquipmentCost, new { htmlattributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.EquipmentCost)
+    </div>
+
+    <input type="submit" name="submit" value="Save" />
+    <input type="button" name="Cancle" value="Cancel" />
+</div>
+
+
+}
+

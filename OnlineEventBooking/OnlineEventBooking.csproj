@@ -141,12 +141,15 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\EquipmentController.cs" />
+    <Compile Include="Controllers\FoodController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\VenuedataController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Enum.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\FoodViewModel.cs" />
     <Compile Include="ViewModel\VenueViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -191,10 +194,14 @@
     <Content Include="Views\Venuedata\List.cshtml" />
     <Content Include="Views\Venuedata\Edit.cshtml" />
     <Content Include="Views\Equipment\AddEquipment.cshtml" />
+    <Content Include="Views\Equipment\List.cshtml" />
+    <Content Include="Views\Equipment\Edit.cshtml" />
+    <Content Include="Views\Food\Add.cshtml" />
+    <Content Include="Views\Food\List.cshtml" />
+    <Content Include="Views\Food\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
     <Folder Include="UploadImage\" />
   </ItemGroup>
   <ItemGroup>

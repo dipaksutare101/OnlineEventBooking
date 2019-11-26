@@ -1,0 +1,63 @@
+﻿@model IEnumerable<OnlineEventBooking.ViewModel.FoodViewModel>
+     
+@{
+    ViewBag.Title = "Food List";
+}
+
+<h2>List</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FoodName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FoodType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DishType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MealType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FoodCost)
+        </th>
+        <th>
+            @Html.Label("Images")
+        </th>
+
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(model => item.FoodName)
+    </td>
+    <td>
+        @Html.DisplayFor(model => item.FoodType)
+    </td>
+    <td>
+        @Html.DisplayFor(model => item.DishType)
+    </td>
+    <td>
+        @Html.DisplayFor(model => item.MealType)
+    </td>
+    <td>
+        @Html.DisplayFor(model => item.FoodCost)
+    </td>
+    <td>
+        <img src="~/UploadImage/@item.FoodFilePath" alt="Alternate Text" height="250px" width="250px" />
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.FoodID })
+        @Html.ActionLink("Edit", "Edit", new { id = item.FoodID })
+    </td>
+</tr>
+
+    }
+</table>
+

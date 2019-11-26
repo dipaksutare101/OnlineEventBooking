@@ -6,23 +6,31 @@
 <h2>Add Equipment</h2>
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Save", "Equipment", FormMethod.Post  ,new { enctype = "multipart/form-data"  }))
 {
-<div>
-    @Html.LabelFor(model => model.EquipmentName)
-    @Html.TextBoxFor(model => model.EquipmentName)
-    @Html.ValidationMessageFor(model => model.EquipmentName)
+
+<div class="form-horizontal">
+    <div class="form-group">
+        @Html.LabelFor(model => model.EquipmentName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.EquipmentName, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.EquipmentName)
+        </div>
+    </div>
+    <br />
+    @Html.Label("Upload Equipment")  : <input type="file" name="ImageFile" value="" />
 
     <br />
-    @Html.Label("Upload Equipment")  : <input type="file" name="filename" value="" />
-
+    <div class="form-group">
+        @Html.LabelFor(model => model.EquipmentCost, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.EquipmentCost, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.EquipmentCost)
+        </div>
+    </div>
     <br />
-    @Html.LabelFor(model => model.EquipmentCost)
-    @Html.TextBoxFor(model => model.EquipmentCost)
-    @Html.ValidationMessageFor(model => model.EquipmentCost)
-    <br />
 
-    <input type="submit" name="submit" value="save" />
+    <input type="submit" name="submit" value="save"  />
     <input type="button" name="cancel" value="cancel" />
 </div>
 
@@ -32,5 +40,5 @@
 
 
 
-}
+        }
 

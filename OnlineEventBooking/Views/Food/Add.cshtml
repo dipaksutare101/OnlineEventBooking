@@ -1,0 +1,75 @@
+﻿@model DAL.Food
+@{
+    ViewBag.Title = "Add Food";
+}
+
+<h2>Add</h2>
+
+@using (Html.BeginForm("Save","Food",FormMethod.Post,new { enctype = "multipart/form-data" } ))
+{
+    
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.FoodType, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div>
+            @Html.Label("Veg")
+            @Html.RadioButtonFor(model => model.FoodType, "1")
+            @Html.Label("Non-Veg")
+            @Html.RadioButtonFor(model => model.FoodType, "2")
+            @Html.ValidationMessageFor(model => model.FoodType)
+        </div>
+
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.MealType, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div>
+            @Html.Label("Lunch")
+            @Html.RadioButtonFor(model => model.MealType, "1", new { htmlattribute = new { @class = "form-control" } })
+            @Html.Label("Dinner")
+            @Html.RadioButtonFor(model => model.MealType, "2", new { htmlattribute = new {@class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.FoodType)
+        </div>
+
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.DishType, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div>
+            @Html.DropDownListFor(model => model.DishType, (IEnumerable<SelectListItem>)ViewBag.DishList, new { htmlattribute = new {@class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.DishType)
+        </div>
+
+
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.FoodName , htmlAttributes: new { @class = "control-label col-md-2" })
+        <div>
+            @Html.EditorFor(model => model.FoodName, new { htmlattribute = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.FoodName)
+        </div>
+
+
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.FoodCost, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div>
+            @Html.EditorFor(model => model.FoodCost, new { htmlattribute = new {@class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.FoodCost)
+        </div>
+
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Upload Image")
+        <input type="file" name="ImageFile" value="" />
+    </div>
+
+    <input type="submit" name="submit" value="Save" />
+    <input type="button" name="cancel" value="cancel" />
+
+
+}
+
