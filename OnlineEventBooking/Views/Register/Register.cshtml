@@ -22,31 +22,67 @@
             error: function (data) { }
         });
     }*@
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+ 
+@*<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>*@
 <script type="text/javascript">
     jQuery(document).ready(function () {
         $("#Country").change(function () {
-           $.ajax({  
-                    type: "POST",  
-                    url: "/Register/StateList",  
-                    contentType: "application/json; charset=utf-8",   
-                    dataType: "json",  
-               success: function (result) {
-                  
-                    
-                    alert('dipak');
-                   $.each(result, function () {
-                       
-                        State.append($("<option></option>").val(this['StateID']).html(this['StateName']));
-                    });
-                },
-                failure: function (response) {
-                    alert(response.responseText);
-                },
-            error: function(data) {}  
-                }); 
-           
-    });
+            //$.ajax({
+            //    type: "POST",
+            //    url: "/Register/StateList",
+            //    contentType: "application/json; charset=utf-8",
+            //    dataType: "json",
+            //    success: function (data) {
+
+
+            //      $.each(data, function (i, data)
+            //     {      // bind the dropdown list using json result
+            //     $('<option>',
+            //        {
+            //            value: data.StateID,
+            //            text: data.StateName
+            //        }).html(data.StateName).appendTo("#State");
+            //    });
+            //    },
+            //    failure: function (data) {
+            //        alert(data.responseText);
+            //    },
+            //    error: function (data) { }
+            //});
+
+            //      $.getJSON("/Register/StateList", function (data)
+            //      {
+
+
+            //              $.each(data, function (j, data) {      // bind the dropdown list using json result
+            //                  alert(data.StateID)
+            //                  $('<option>',
+            //                      {
+            //                          value: data.StateID,
+            //                          text: data.StateName
+            //                      }).html(data.StateName).appendTo("#State");
+
+            //              });
+
+            //})
+
+            $.get("/Register/StateList", null, CallBack);
+            function CallBack(data) {
+              
+               for (i = 0; i < data.length; i++) {
+                   
+                     $('<option>',
+                                  {
+                                      value: data[i].Value,
+                                      text: data[i].Text
+                                  }).html(data.StateName).appendTo("#State");
+            }
+              
+            }
+             
+
+        });
     });
 </script>
 @using (Html.BeginForm("Save", "Register"))
@@ -77,10 +113,10 @@
 
     </div>
     <div class="form-group">
-        @Html.LabelFor(model => model.State, htmlAttributes: new { @class = "form-label", @onchange = "" })
+        @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "form-label" })
         <div>
-            @Html.DropDownList("State", new SelectList(Enumerable.Empty<SelectListItem>()),new { htmlattribute = new { @class = "form-control",@id="State" } })
-            @Html.ValidationMessageFor(model => model.State)
+            @Html.DropDownList("City","Select City")
+            @Html.ValidationMessageFor(model => model.City)
         </div>
 
     </div>
