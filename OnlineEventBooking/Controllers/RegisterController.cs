@@ -13,19 +13,18 @@ namespace OnlineEventBooking.Controllers
         {
             using (EventDBEntities db= new EventDBEntities())
             {
-                var country = db.Countries.ToList();
-                List<SelectListItem> dd = new List<SelectListItem>();
-                dd = country;
-                ViewBag.countrylist = dd;
+                var country = new SelectList(db.Countries.ToList(), "CountryID","Name");
+               
+                ViewBag.countrylist = country;
             }
                 return View();
         }
 
-        public JsonResult StateList(int id)
+        public JsonResult StateList()
         {
             using (EventDBEntities db= new EventDBEntities())
-            {
-                var State = db.States.Where(x => x.CountryID == id).ToList();
+            {    
+                var State = new SelectList(db.States.ToList(), "StateID", "StateName");
                 return Json(State, JsonRequestBehavior.AllowGet);
             }
         }
