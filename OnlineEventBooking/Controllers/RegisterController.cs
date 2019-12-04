@@ -20,13 +20,19 @@ namespace OnlineEventBooking.Controllers
                 return View();
         }
 
-        public JsonResult StateList()
+        public JsonResult StateList(string id)
         {
             using (EventDBEntities db= new EventDBEntities())
             {    
                 var State = new SelectList(db.States.ToList(), "StateID", "StateName");
                 return Json(State, JsonRequestBehavior.AllowGet);
             }
+        }
+
+        public ActionResult Login(Registration Reg)
+        {
+
+            return View();
         }
     }
 }

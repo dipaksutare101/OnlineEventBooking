@@ -203,6 +203,7 @@
     <Content Include="Views\Food\List.cshtml" />
     <Content Include="Views\Food\Edit.cshtml" />
     <Content Include="Views\Register\Register.cshtml" />
+    <Content Include="Views\Register\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

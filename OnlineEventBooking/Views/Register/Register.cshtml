@@ -67,7 +67,7 @@
 
             //})
 
-            $.get("/Register/StateList", null, CallBack);
+            $.get("/Register/StateList", ("#Country").val(), CallBack);
             function CallBack(data) {
               
                for (i = 0; i < data.length; i++) {
