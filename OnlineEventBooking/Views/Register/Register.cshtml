@@ -23,64 +23,49 @@
         });
     }*@
 <script src="~/Scripts/jquery-3.4.1.min.js"></script>
- 
+
 @*<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>*@
 <script type="text/javascript">
+
+    function city() {
+        $("#City").empty();
+        $.get("/Register/CityList", { id: $('#State').val() }, CallBack);
+        function CallBack(data) {
+
+            for (i = 0; i < data.length; i++) {
+
+                $('<option>',
+                    {
+                        value: data[i].Value,
+                        text: data[i].Text
+                    }).html(data.StateName).appendTo("#City");
+            }
+
+        }
+    };
+
     jQuery(document).ready(function () {
         $("#Country").change(function () {
-            //$.ajax({
-            //    type: "POST",
-            //    url: "/Register/StateList",
-            //    contentType: "application/json; charset=utf-8",
-            //    dataType: "json",
-            //    success: function (data) {
-
-
-            //      $.each(data, function (i, data)
-            //     {      // bind the dropdown list using json result
-            //     $('<option>',
-            //        {
-            //            value: data.StateID,
-            //            text: data.StateName
-            //        }).html(data.StateName).appendTo("#State");
-            //    });
-            //    },
-            //    failure: function (data) {
-            //        alert(data.responseText);
-            //    },
-            //    error: function (data) { }
-            //});
-
-            //      $.getJSON("/Register/StateList", function (data)
-            //      {
-
-
-            //              $.each(data, function (j, data) {      // bind the dropdown list using json result
-            //                  alert(data.StateID)
-            //                  $('<option>',
-            //                      {
-            //                          value: data.StateID,
-            //                          text: data.StateName
-            //                      }).html(data.StateName).appendTo("#State");
-
-            //              });
-
-            //})
-
-            $.get("/Register/StateList", null, CallBack);
+            $("#State").empty();
+            $.get("/Register/StateList", { id: $('#Country').val() }, CallBack);
             function CallBack(data) {
-              
-               for (i = 0; i < data.length; i++) {
-                   
-                     $('<option>',
-                                  {
-                                      value: data[i].Value,
-                                      text: data[i].Text
-                                  }).html(data.StateName).appendTo("#State");
+
+                for (i = 0; i < data.length; i++) {
+
+                    $('<option>',
+                        {
+                            value: data[i].Value,
+                            text: data[i].Text
+                        }).html(data.StateName).appendTo("#State");
+                }
+
             }
-              
-            }
-             
+
+            city();
+        });
+        $("#State").change(function () {
+
+            city();
 
         });
     });
@@ -120,12 +105,101 @@
         </div>
 
     </div>
-    @*<div class="form-group">
-            @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "form-label" })
-            <div>
-                @Html.DropDownListFor(model => model.City)
-                @Html.ValidationMessageFor(model => model.City)
-            </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "form-label" })
+        <div>
+            @Html.DropDownListFor(model => model.City, new SelectList(Enumerable.Empty<SelectListItem>()), new { htmlattribute = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.City)
+        </div>
 
-        </div>*@
+    </div>
+ 
+    <div class="form-group">
+        @Html.LabelFor(model => model.Mobileno, htmlAttributes: new { @class = "form-label" })
+        <div>
+            @Html.EditorFor(model => model.Mobileno, new { htmlattribute = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Mobileno)
+        </div>
+
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.EmailID, htmlAttributes: new { @class = "form-label" })
+        <div>
+            @Html.EditorFor(model => model.EmailID, new { htmlattribute = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.EmailID)
+        </div>
+
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "form-label" })
+        <div>
+            @Html.EditorFor(model => model.Username, new { htmlattribute = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Username)
+        </div>
+
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "form-label" })
+        <div>
+            @Html.EditorFor(model => model.Password, new { htmlattribute = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Password)
+        </div>
+
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.ConfirmPassword, htmlAttributes: new { @class = "form-label" })
+        <div>
+            @Html.EditorFor(model => model.ConfirmPassword, new { htmlattribute = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ConfirmPassword)
+        </div>
+
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Gender, htmlAttributes: new { @class = "form-label" })
+        <div>
+            @Html.Label("Male")
+            @Html.RadioButtonFor(model => model.Gender, "M", new { htmlattribute = new { @class = "form-control" } })
+            @Html.Label("FeMale")
+            @Html.RadioButtonFor(model => model.Gender, "F", new { htmlattribute = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Gender)
+        </div>
+
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Birthdate, htmlAttributes: new { @class = "form-label" })
+        <div>
+            @Html.TextBoxFor(model => model.Birthdate, new { htmlAttributes = new { @class = "form-control", placeholder = "Date Of Birth", @readonly = "true" } })
+            @Html.ValidationMessageFor(model => model.Birthdate)
+        </div>
+
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.RoleID, htmlAttributes: new { @class = "form-label" })
+        <div>
+            @Html.DropDownListFor(model => model.RoleID, (IEnumerable<SelectListItem>)ViewBag.Rolelist, new { htmlattribute = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.RoleID)
+        </div>
+
+    </div>
+    <input type="submit" name="submit" value="Save" />
+
 }
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/cssjqryUi")
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('input[type=datetime]').datepicker({
+                dateFormat: "dd/M/yy",
+                changeMonth: true,
+                changeYear: true,
+                yearRange: "-60:+0"
+            });
+
+        });
+    </script>
+
+} 
