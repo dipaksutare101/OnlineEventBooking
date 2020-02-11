@@ -44,6 +44,19 @@
         }
     };
 
+            //              $.each(data, function (j, data) {      // bind the dropdown list using json result
+            //                  alert(data.StateID)
+            //                  $('<option>',
+            //                      {
+            //                          value: data.StateID,
+            //                          text: data.StateName
+            //                      }).html(data.StateName).appendTo("#State");
+
+            //              });
+
+            //})
+
+            $.get("/Register/StateList", ("#Country").val(), CallBack);
     jQuery(document).ready(function () {
         $("#Country").change(function () {
             $("#State").empty();
